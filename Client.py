@@ -4,7 +4,7 @@ import paho.mqtt.subscribe as subscribe
 import socket
 import time
 
-HOST_socket = '10.144.241.230'  
+HOST_socket = ''xx.xx.xx.xx''  
 PORT_socket = 5432         
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((HOST_socket, PORT_socket))
