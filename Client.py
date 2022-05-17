@@ -25,8 +25,9 @@ while True:
         msg = subscribe.simple("data", hostname=hostname, port=port, auth=auth)
         msg1 = subscribe.simple("time", hostname=hostname, port=port, auth=auth)
         msg2 = subscribe.simple("status_data", hostname=hostname, port=port, auth=auth)
-        print("%s %s %s %s %s %s" % (msg.topic, msg.payload,msg1.topic, msg1.payload,msg2.topic, msg2.payload))
-        connection.sendall( msg.payload + msg1.payload + msg2.payload)
+        msg3 = subscribe.simple("image", hostname=hostname, port=port, auth=auth)
+        print("%s %s %s %s %s %s %s %s" % (msg.topic, msg.payload,msg1.topic, msg1.payload,msg2.topic, msg2.payload, msg3.topic, msg3.payload))
+        connection.sendall( msg.payload + msg1.payload + msg2.payload + msg3.payload)
 
 
 
