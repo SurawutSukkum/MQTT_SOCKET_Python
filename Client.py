@@ -10,7 +10,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((HOST_socket, PORT_socket))
 s.listen()
 
-hostname = "10.144.241.230"
+hostname = 'xxx.xxx.xxx.xxx'
 port = 1883
 auth = {
     'username': ' ',
