@@ -26,9 +26,8 @@ while True:
         msg1 = subscribe.simple("time", hostname=hostname, port=port, auth=auth)
         msg2 = subscribe.simple("status_data", hostname=hostname, port=port, auth=auth)
         print("%s %s %s %s %s %s" % (msg.topic, msg.payload,msg1.topic, msg1.payload,msg2.topic, msg2.payload))
-        connection.sendall( msg.payload)
-        connection.sendall( msg1.payload)
-        connection.sendall( msg2.payload)
+        connection.sendall( msg.payload + msg1.payload + msg2.payload)
+
 
 
 
