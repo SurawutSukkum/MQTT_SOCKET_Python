@@ -10,7 +10,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((HOST_socket, PORT_socket))
 s.listen()
 
-hostname = 'xx.xx.xx.xx'
+hostname = "xx.xx.xx.xx"
 port = 1883
 auth = {
     'username': ' ',
@@ -25,6 +25,13 @@ while True:
     Filter = 0
     Label = 0
     Flag_background = 0
+    Flag_Unit = 0
+    Flag_Power_supply = 0
+    Flag_Tube = 0
+    Flag_Filter = 0
+    Flag_Label = 0
+    Flag_final_status = 0
+
     while True:
         # connection, client_address = s.accept()
         # data = connection.recv(1024)
@@ -53,6 +60,11 @@ while True:
         if list_4 == "0" :
             if  Flag_background == 0:
                 Flag_background = 1
+                Flag_Unit = 0
+                Flag_Power_supply = 0
+                Flag_Tube = 0
+                Flag_Filter = 0
+                Flag_Label = 0
                 print("Back ground")
                 Unit = 0
                 Power_supply = 0
@@ -64,6 +76,7 @@ while True:
                 publish.single("Filter", "OK", hostname=hostname, port=port, auth=auth)
                 publish.single("Label", "OK", hostname=hostname, port=port, auth=auth)
                 publish.single("Unit", "OK", hostname=hostname, port=port, auth=auth)
+                Flag_final_status= 0
 
                 if Unit == 1 & Power_supply == 1 & Tube == 1 & Filter == 1 & Label == 1:
                     publish.single("final_status", "OK", hostname=hostname, port=port, auth=auth)
@@ -81,26 +94,50 @@ while True:
                 publish.single("final_status", " ", hostname=hostname, port=port, auth=auth)
 
         if list_4 == "2":
-            Flag_background = 0
-            print("Power Supply")
-            Power_supply = 1
-            publish.single("Power_supply", "OK", hostname=hostname, port=port, auth=auth)
+            if Flag_Power_supply == 0:
+                Flag_background = 0
+                Flag_Power_supply = 1
+                print("Power Supply")
+                Power_supply = 1
+                publish.single("Power_supply", "OK", hostname=hostname, port=port, auth=auth)
         if list_4 == "3":
-            print("Tube")
-            Tube = 1
-            publish.single("Tube", "OK", hostname=hostname, port=port, auth=auth)
+            if Flag_Tube == 0:
+                Flag_Tube = 1
+                print("Tube")
+                Tube = 1
+                publish.single("Tube", "OK", hostname=hostname, port=port, auth=auth)
         if list_4 == "4":
-            print("Filter")
-            Filter = 1
-            publish.single("Filter", "OK", hostname=hostname, port=port, auth=auth)
+            if Flag_Filter == 0:
+                Flag_Filter = 1
+                print("Filter")
+                Filter = 1
+                publish.single("Filter", "OK", hostname=hostname, port=port, auth=auth)
         if list_4 == "5":
-            print("Label")
-            Label = 1
-            publish.single("Label", "OK", hostname=hostname, port=port, auth=auth)
+            if Flag_Label == 0:
+                Flag_Label = 1
+                print("Label")
+                Label = 1
+                publish.single("Label", "OK", hostname=hostname, port=port, auth=auth)
         if list_4 == "6":
-            print("Unit")
-            Unit = 1
-            publish.single("Unit", "OK", hostname=hostname, port=port, auth=auth)
+            if Flag_Unit == 0:
+                Flag_Unit = 1
+                print("Unit")
+                Unit = 1
+                publish.single("Unit", "OK", hostname=hostname, port=port, auth=auth)
 
-
+        if Unit == 1 & Power_supply == 1 & Tube == 1 & Filter == 1 & Label == 1:
+            if Flag_final_status == 0:
+                Flag_final_status= 1
+                publish.single("final_status", "OK", hostname=hostname, port=port, auth=auth)
+                print("OK")
+                publish.single("Power_supply", " ", hostname=hostname, port=port, auth=auth)
+                publish.single("Tube", " ", hostname=hostname, port=port, auth=auth)
+                publish.single("Filter", " ", hostname=hostname, port=port, auth=auth)
+                publish.single("Label", " ", hostname=hostname, port=port, auth=auth)
+                publish.single("Unit", " ", hostname=hostname, port=port, auth=auth)
+                Flag_Unit = 0
+                Flag_Power_supply = 0
+                Flag_Tube = 0
+                Flag_Filter = 0
+                Flag_Label = 0
             # connection.sendall( msg.payload + msg1.payload + msg2.payload + msg3.payload)
