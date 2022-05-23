@@ -3,14 +3,15 @@ import paho.mqtt.subscribe as subscribe
 
 import socket
 import time
+from datetime import datetime
 
-HOST_socket = 'x.x.x.x'
+HOST_socket = 'xx.xx.xx.xx'
 PORT_socket = 5432
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((HOST_socket, PORT_socket))
 s.listen()
 
-hostname = "x.x.x.x"
+hostname = 'xx.xx.xx.xx'
 port = 1883
 auth = {
     'username': ' ',
@@ -47,6 +48,12 @@ while True:
         msg3 = subscribe.simple("image", hostname=hostname, port=port, auth=auth)
         print("%s %s " % (msg3.topic, msg3.payload))
         '''
+        # current date and time
+        now = datetime.now()
+
+        timestamp = datetime.fromtimestamp(datetime.timestamp(now))
+        #print(timestamp)
+        
         msg4 = subscribe.simple("countS", hostname=hostname, port=port, auth=auth)
         # print(" %s " % ( msg4.payload.decode("utf-8")))
         text = msg4.payload.decode("utf-8")
@@ -86,7 +93,8 @@ while True:
             publish.single("Unit", " ", hostname=hostname, port=port, auth=auth)
             publish.single("final_status", " ", hostname=hostname, port=port, auth=auth)
 
-        if list_4 == "c" :
+
+        if list_4 == "7":
             if  Flag_background == 0:
                 Flag_background = 0
                 Flag_Unit = 0
@@ -111,6 +119,10 @@ while True:
                     Tube = 0
                     Filter = 0
                     Label = 0
+                    time.sleep(3)
+                    publish.single("final_status", " ", hostname=hostname, port=port, auth=auth)
+                    publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+                    print(timestamp)
                 else:
                     print("NG")
                     publish.single("final_status", "NG", hostname=hostname, port=port, auth=auth)
@@ -124,7 +136,56 @@ while True:
                     Tube = 0
                     Filter = 0
                     Label = 0
+                    time.sleep(3)
+                    publish.single("final_status", " ", hostname=hostname, port=port, auth=auth)
+                    publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+                    print(timestamp)
 
+        if list_4 == "c":
+            if  Flag_background == 0:
+                Flag_background = 0
+                Flag_Unit = 0
+                Flag_Power_supply = 0
+                Flag_Tube = 0
+                Flag_Filter = 0
+                Flag_Label = 0
+                print("Back ground")
+                Flag_final_status= 0
+
+                if Unit == 1 & Power_supply == 1 & Tube == 1 & Filter == 1 & Label == 1:
+                    publish.single("final_status", "OK", hostname=hostname, port=port, auth=auth)
+                    print("OK")
+                    publish.single("Power_supply", " ", hostname=hostname, port=port, auth=auth)
+                    publish.single("Tube", " ", hostname=hostname, port=port, auth=auth)
+                    publish.single("Filter", " ", hostname=hostname, port=port, auth=auth)
+                    publish.single("Label", " ", hostname=hostname, port=port, auth=auth)
+                    publish.single("Unit", " ", hostname=hostname, port=port, auth=auth)
+                    Unit = 0
+                    Power_supply = 0
+                    Tube = 0
+                    Filter = 0
+                    Label = 0
+                    time.sleep(3)
+                    publish.single("final_status", " ", hostname=hostname, port=port, auth=auth)
+                    publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+                    print(timestamp)
+                else:
+                    print("NG")
+                    publish.single("final_status", "NG", hostname=hostname, port=port, auth=auth)
+                    publish.single("Power_supply", " ", hostname=hostname, port=port, auth=auth)
+                    publish.single("Tube", " ", hostname=hostname, port=port, auth=auth)
+                    publish.single("Filter", " ", hostname=hostname, port=port, auth=auth)
+                    publish.single("Label", " ", hostname=hostname, port=port, auth=auth)
+                    publish.single("Unit", " ", hostname=hostname, port=port, auth=auth)
+                    Unit = 0
+                    Power_supply = 0
+                    Tube = 0
+                    Filter = 0
+                    Label = 0
+                    time.sleep(3)
+                    publish.single("final_status", " ", hostname=hostname, port=port, auth=auth)
+                    publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+                    print(timestamp)
 
         if list_4 == "2":
             if Flag_Power_supply == 0:
@@ -133,30 +194,40 @@ while True:
                 print("Power Supply")
                 Power_supply = 1
                 publish.single("Power_supply", "OK", hostname=hostname, port=port, auth=auth)
+                publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+                print(timestamp)
         if list_4 == "3":
             if Flag_Tube == 0:
                 Flag_Tube = 1
                 print("Tube")
                 Tube = 1
                 publish.single("Tube", "OK", hostname=hostname, port=port, auth=auth)
+                publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+                print(timestamp)
         if list_4 == "4":
             if Flag_Filter == 0:
                 Flag_Filter = 1
                 print("Filter")
                 Filter = 1
                 publish.single("Filter", "OK", hostname=hostname, port=port, auth=auth)
+                publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+                print(timestamp)
         if list_4 == "5":
             if Flag_Label == 0:
                 Flag_Label = 1
                 print("Label")
                 Label = 1
                 publish.single("Label", "OK", hostname=hostname, port=port, auth=auth)
+                publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+                print(timestamp)
         if list_4 == "6":
             if Flag_Unit == 0:
                 Flag_Unit = 1
                 print("Unit")
                 Unit = 1
                 publish.single("Unit", "OK", hostname=hostname, port=port, auth=auth)
+                publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+                print(timestamp)
 
         '''
         if Unit == 1 & Power_supply == 1 & Tube == 1 & Filter == 1 & Label == 1:
