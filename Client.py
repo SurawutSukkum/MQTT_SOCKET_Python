@@ -11,7 +11,7 @@ s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((HOST_socket, PORT_socket))
 s.listen()
 
-hostname = 'xx.xx.xx.xx'
+hostname = "'xx.xx.xx.xx'
 port = 1883
 auth = {
     'username': ' ',
@@ -25,7 +25,12 @@ while True:
     Tube = 0
     Filter = 0
     Label = 0
-    Flag_background = 0
+    Bag = 0
+    Bag1 = 0
+    Bag2 = 0
+    Flag_Bag = 0
+    Flag_Bag1 = 0
+    Flag_Bag2 = 0
     Flag_Unit = 0
     Flag_Power_supply = 0
     Flag_Tube = 0
@@ -83,7 +88,12 @@ while True:
             Tube = 0
             Filter = 0
             Label = 0
-            Flag_background = 0
+            Bag = 0
+            Bag1 = 0
+            Bag2 = 0
+            Flag_Bag = 0
+            Flag_Bag1 = 0
+            Flag_Bag2 = 0
             Flag_Unit = 0
             Flag_Power_supply = 0
             Flag_Tube = 0
@@ -95,12 +105,13 @@ while True:
             publish.single("Filter", " ", hostname=hostname, port=port, auth=auth)
             publish.single("Label", " ", hostname=hostname, port=port, auth=auth)
             publish.single("Unit", " ", hostname=hostname, port=port, auth=auth)
+            publish.single("Bag", " ", hostname=hostname, port=port, auth=auth)
+            publish.single("Bag1", " ", hostname=hostname, port=port, auth=auth)
+            publish.single("Bag2", " ", hostname=hostname, port=port, auth=auth)
             publish.single("final_status", " ", hostname=hostname, port=port, auth=auth)
             publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
 
-        if list_4 == "7":
-            if  Flag_background == 0:
-                Flag_background = 0
+        if list_4 == "0":
                 Flag_Unit = 0
                 Flag_Power_supply = 0
                 Flag_Tube = 0
@@ -110,7 +121,7 @@ while True:
 
                 Flag_final_status= 0
 
-                if Unit == 1 & Power_supply == 1 & Tube == 1 & Filter == 1 & Label == 1:
+                if Unit == 1 & Power_supply == 1 & Tube == 1 & Filter == 1 & Label == 1 & Bag == 1 & Bag1 == 1 & Bag2 == 1:
                     publish.single("final_status", "OK", hostname=hostname, port=port, auth=auth)
                     print("OK")
                     publish.single("Power_supply", " ", hostname=hostname, port=port, auth=auth)
@@ -118,11 +129,17 @@ while True:
                     publish.single("Filter", " ", hostname=hostname, port=port, auth=auth)
                     publish.single("Label", " ", hostname=hostname, port=port, auth=auth)
                     publish.single("Unit", " ", hostname=hostname, port=port, auth=auth)
+                    publish.single("Bag", " ", hostname=hostname, port=port, auth=auth)
+                    publish.single("Bag1", " ", hostname=hostname, port=port, auth=auth)
+                    publish.single("Bag2", " ", hostname=hostname, port=port, auth=auth)
                     Unit = 0
                     Power_supply = 0
                     Tube = 0
                     Filter = 0
                     Label = 0
+                    Bag=0;
+                    Bag1 = 0;
+                    Bag2 = 0;
                     time.sleep(3)
                     publish.single("final_status", " ", hostname=hostname, port=port, auth=auth)
                     publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
@@ -135,26 +152,40 @@ while True:
                     publish.single("Filter", " ", hostname=hostname, port=port, auth=auth)
                     publish.single("Label", " ", hostname=hostname, port=port, auth=auth)
                     publish.single("Unit", " ", hostname=hostname, port=port, auth=auth)
+                    publish.single("Bag", " ", hostname=hostname, port=port, auth=auth)
+                    publish.single("Bag1", " ", hostname=hostname, port=port, auth=auth)
+                    publish.single("Bag2", " ", hostname=hostname, port=port, auth=auth)
                     Unit = 0
                     Power_supply = 0
                     Tube = 0
                     Filter = 0
                     Label = 0
+                    Bag = 0;
+                    Bag1 = 0;
+                    Bag2 = 0;
                     time.sleep(3)
                     publish.single("final_status", " ", hostname=hostname, port=port, auth=auth)
                     publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
                     print(timestamp)
 
         if list_4 == "c":
-            if  Flag_background == 0:
-                Flag_background = 0
+                Unit = 0
+                Power_supply = 0
+                Tube = 0
+                Filter = 0
+                Label = 0
+                Bag = 0
+                Bag1 = 0
+                Bag2 = 0
+                Flag_Bag = 0
+                Flag_Bag1 = 0
+                Flag_Bag2 = 0
                 Flag_Unit = 0
                 Flag_Power_supply = 0
                 Flag_Tube = 0
                 Flag_Filter = 0
                 Flag_Label = 0
-                print("Back ground")
-                Flag_final_status= 0
+                Flag_final_status = 0
 
                 if Unit == 1 & Power_supply == 1 & Tube == 1 & Filter == 1 & Label == 1:
                     publish.single("final_status", "OK", hostname=hostname, port=port, auth=auth)
@@ -164,42 +195,76 @@ while True:
                     publish.single("Filter", " ", hostname=hostname, port=port, auth=auth)
                     publish.single("Label", " ", hostname=hostname, port=port, auth=auth)
                     publish.single("Unit", " ", hostname=hostname, port=port, auth=auth)
+                    publish.single("Bag", " ", hostname=hostname, port=port, auth=auth)
+                    publish.single("Bag1", " ", hostname=hostname, port=port, auth=auth)
+                    publish.single("Bag2", " ", hostname=hostname, port=port, auth=auth)
+                    publish.single("final_status", "OK", hostname=hostname, port=port, auth=auth)
+                    publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
                     Unit = 0
                     Power_supply = 0
                     Tube = 0
                     Filter = 0
                     Label = 0
+                    Bag = 0
+                    Bag1 = 0
+                    Bag2 = 0
+                    Flag_Bag = 0
+                    Flag_Bag1 = 0
+                    Flag_Bag2 = 0
+                    Flag_Unit = 0
+                    Flag_Power_supply = 0
+                    Flag_Tube = 0
+                    Flag_Filter = 0
+                    Flag_Label = 0
+                    Flag_final_status = 0
                     time.sleep(3)
                     publish.single("final_status", " ", hostname=hostname, port=port, auth=auth)
-                    publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
                     print(timestamp)
                 else:
                     print("NG")
-                    publish.single("final_status", "NG", hostname=hostname, port=port, auth=auth)
                     publish.single("Power_supply", " ", hostname=hostname, port=port, auth=auth)
                     publish.single("Tube", " ", hostname=hostname, port=port, auth=auth)
                     publish.single("Filter", " ", hostname=hostname, port=port, auth=auth)
                     publish.single("Label", " ", hostname=hostname, port=port, auth=auth)
                     publish.single("Unit", " ", hostname=hostname, port=port, auth=auth)
+                    publish.single("Bag", " ", hostname=hostname, port=port, auth=auth)
+                    publish.single("Bag1", " ", hostname=hostname, port=port, auth=auth)
+                    publish.single("Bag2", " ", hostname=hostname, port=port, auth=auth)
+                    publish.single("final_status", "NG", hostname=hostname, port=port, auth=auth)
+                    publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
                     Unit = 0
                     Power_supply = 0
                     Tube = 0
                     Filter = 0
                     Label = 0
+                    Bag=0;
+                    Bag1 = 0;
+                    Bag2 = 0;
                     time.sleep(3)
                     publish.single("final_status", " ", hostname=hostname, port=port, auth=auth)
                     publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
                     print(timestamp)
 
+        if list_4== "1":
+            if Flag_Bag == 0:
+                Flag_Bag = 1
+                print("Bag")
+                Bag = 1
+                publish.single("Bag", "OK", hostname=hostname, port=port, auth=auth)
+                publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+                publish.single("capture", timestamp, hostname=hostname, port=port, auth=auth)
+                print(timestamp)
+
         if list_4 == "2":
             if Flag_Power_supply == 0:
-                Flag_background = 0
                 Flag_Power_supply = 1
                 print("Power Supply")
                 Power_supply = 1
                 publish.single("Power_supply", "OK", hostname=hostname, port=port, auth=auth)
                 publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+                publish.single("capture", timestamp, hostname=hostname, port=port, auth=auth)
                 print(timestamp)
+
         if list_4 == "3":
             if Flag_Tube == 0:
                 Flag_Tube = 1
@@ -207,7 +272,9 @@ while True:
                 Tube = 1
                 publish.single("Tube", "OK", hostname=hostname, port=port, auth=auth)
                 publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+                publish.single("capture", timestamp, hostname=hostname, port=port, auth=auth)
                 print(timestamp)
+
         if list_4 == "4":
             if Flag_Filter == 0:
                 Flag_Filter = 1
@@ -215,7 +282,9 @@ while True:
                 Filter = 1
                 publish.single("Filter", "OK", hostname=hostname, port=port, auth=auth)
                 publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+                publish.single("capture", timestamp, hostname=hostname, port=port, auth=auth)
                 print(timestamp)
+
         if list_4 == "5":
             if Flag_Label == 0:
                 Flag_Label = 1
@@ -223,7 +292,9 @@ while True:
                 Label = 1
                 publish.single("Label", "OK", hostname=hostname, port=port, auth=auth)
                 publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+                publish.single("capture", timestamp, hostname=hostname, port=port, auth=auth)
                 print(timestamp)
+
         if list_4 == "6":
             if Flag_Unit == 0:
                 Flag_Unit = 1
@@ -231,8 +302,98 @@ while True:
                 Unit = 1
                 publish.single("Unit", "OK", hostname=hostname, port=port, auth=auth)
                 publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+                publish.single("capture", timestamp, hostname=hostname, port=port, auth=auth)
                 print(timestamp)
 
+        if list_4== "7":
+            if Flag_Bag1 == 0:
+                Flag_Bag1 = 1
+                print("Bag1")
+                Bag1 = 1
+                publish.single("Bag1", "OK", hostname=hostname, port=port, auth=auth)
+                publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+                publish.single("capture", timestamp, hostname=hostname, port=port, auth=auth)
+                print(timestamp)
+
+        if list_4== "8":
+            if Flag_Bag2 == 0:
+                Flag_Bag2 = 1
+                print("Bag2")
+                Bag2 = 1
+                publish.single("Bag2", "OK", hostname=hostname, port=port, auth=auth)
+                publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+                publish.single("capture", timestamp, hostname=hostname, port=port, auth=auth)
+                print(timestamp)
+
+        if Unit == 1 & Power_supply == 1 & Tube == 1 & Filter == 1 & Label == 1 & Bag == 1 & Bag1 == 1 & Bag2 == 1:
+            publish.single("final_status", "OK", hostname=hostname, port=port, auth=auth)
+            publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+            Unit = 0
+            Power_supply = 0
+            Tube = 0
+            Filter = 0
+            Label = 0
+            Bag = 0
+            Bag1 = 0
+            Bag2 = 0
+            Flag_Bag = 0
+            Flag_Bag1 = 0
+            Flag_Bag2 = 0
+            Flag_Unit = 0
+            Flag_Power_supply = 0
+            Flag_Tube = 0
+            Flag_Filter = 0
+            Flag_Label = 0
+            Flag_final_status = 0
+            time.sleep(3)
+            publish.single("Power_supply", " ", hostname=hostname, port=port, auth=auth)
+            publish.single("Tube", " ", hostname=hostname, port=port, auth=auth)
+            publish.single("Filter", " ", hostname=hostname, port=port, auth=auth)
+            publish.single("Label", " ", hostname=hostname, port=port, auth=auth)
+            publish.single("Unit", " ", hostname=hostname, port=port, auth=auth)
+            publish.single("Bag", " ", hostname=hostname, port=port, auth=auth)
+            publish.single("Bag1", " ", hostname=hostname, port=port, auth=auth)
+            publish.single("Bag2", " ", hostname=hostname, port=port, auth=auth)
+            publish.single("final_status", " ", hostname=hostname, port=port, auth=auth)
+            publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+            publish.single("capture", timestamp, hostname=hostname, port=port, auth=auth)
+            print(timestamp)
+
+        if Unit == 1 :
+            if Power_supply == 0 | Tube == 0 | Filter == 0 | Label == 0 | Bag == 0 | Bag1 == 0| Bag2 == 0:
+                publish.single("Power_supply", " ", hostname=hostname, port=port, auth=auth)
+                publish.single("Tube", " ", hostname=hostname, port=port, auth=auth)
+                publish.single("Filter", " ", hostname=hostname, port=port, auth=auth)
+                publish.single("Label", " ", hostname=hostname, port=port, auth=auth)
+                publish.single("Unit", " ", hostname=hostname, port=port, auth=auth)
+                publish.single("Bag", " ", hostname=hostname, port=port, auth=auth)
+                publish.single("Bag1", " ", hostname=hostname, port=port, auth=auth)
+                publish.single("Bag2", " ", hostname=hostname, port=port, auth=auth)
+                publish.single("final_status", "NG", hostname=hostname, port=port, auth=auth)
+                publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+                Unit = 0
+                Power_supply = 0
+                Tube = 0
+                Filter = 0
+                Label = 0
+                Bag = 0
+                Bag1 = 0
+                Bag2 = 0
+                Flag_Bag = 0
+                Flag_Bag1 = 0
+                Flag_Bag2 = 0
+                Flag_Unit = 0
+                Flag_Power_supply = 0
+                Flag_Tube = 0
+                Flag_Filter = 0
+                Flag_Label = 0
+                Flag_final_status = 0
+                time.sleep(3)
+                publish.single("final_status", " ", hostname=hostname, port=port, auth=auth)
+                publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+                publish.single("capture", timestamp, hostname=hostname, port=port, auth=auth)
+                print(timestamp)
+                time.sleep(3)
         '''
         if Unit == 1 & Power_supply == 1 & Tube == 1 & Filter == 1 & Label == 1:
             if Flag_final_status == 0:
