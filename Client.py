@@ -32,6 +32,7 @@ while True:
     Flag_Filter = 0
     Flag_Label = 0
     Flag_final_status = 0
+    # current date and time
 
     while True:
         # connection, client_address = s.accept()
@@ -52,8 +53,11 @@ while True:
         now = datetime.now()
 
         timestamp = datetime.fromtimestamp(datetime.timestamp(now))
-        #print(timestamp)
-        
+        timestamp = timestamp.strftime("%d%m%Y%M%S")
+        #publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+
+        print(timestamp)
+
         msg4 = subscribe.simple("countS", hostname=hostname, port=port, auth=auth)
         # print(" %s " % ( msg4.payload.decode("utf-8")))
         text = msg4.payload.decode("utf-8")
@@ -73,7 +77,7 @@ while True:
         msg_resetlist_4 = msg_resetlist_3[1]
         print(msg_resetlist_4)
         '''
-        if(list_4 == "r"):
+        if list_4 == "r":
             Unit = 0
             Power_supply = 0
             Tube = 0
@@ -92,7 +96,7 @@ while True:
             publish.single("Label", " ", hostname=hostname, port=port, auth=auth)
             publish.single("Unit", " ", hostname=hostname, port=port, auth=auth)
             publish.single("final_status", " ", hostname=hostname, port=port, auth=auth)
-
+            publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
 
         if list_4 == "7":
             if  Flag_background == 0:
