@@ -100,8 +100,12 @@ while True:
         pythonObj = json.loads(text)
         print(type(pythonObj))
         list_4 = pythonObj['DeepDetect']['obj_count_str']
-        print("list_4= ",list_4)
+        list_5 = pythonObj['ImageCapture']['file_name']
 
+
+
+        print("list_4= ",list_4)
+        print("list_5= ", list_5)
         print("Bag =",list_4.find("Bag"))
         print("Power Supply =",list_4.find("Power Supply"))
         print("Filter =",list_4.find("Filter"))
@@ -110,7 +114,10 @@ while True:
         print("Unit =",list_4.find("Unit"))
         print("Bag1 =",list_4.find("Bag1"))
         print("Bag2 =",list_4.find("Bag2"))
-
+        if len(list_4) == 0:
+            publish.single("time", " ", hostname=hostname, port=port, auth=auth)
+            publish.single("object", " ", hostname=hostname, port=port, auth=auth)
+            publish.single("filename", " ", hostname=hostname, port=port, auth=auth)
         '''
         print(list_1)
         print(list_2)
@@ -136,6 +143,8 @@ while True:
                 publish.single("capture", timestamp, hostname=hostname, port=port, auth=auth)
                 publish.single("Power_supply", "OK", hostname=hostname, port=port, auth=auth)
                 publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+                publish.single("object", list_4, hostname=hostname, port=port, auth=auth)
+                publish.single("filename", list_5, hostname=hostname, port=port, auth=auth)
                 print(timestamp)
 
         if list_4.find("Bag") == 0:
@@ -145,6 +154,8 @@ while True:
                 publish.single("capture", timestamp, hostname=hostname, port=port, auth=auth)
                 publish.single("Bag", "OK", hostname=hostname, port=port, auth=auth)
                 publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+                publish.single("object", list_4, hostname=hostname, port=port, auth=auth)
+                publish.single("filename", list_5, hostname=hostname, port=port, auth=auth)
                 print(timestamp)
 
         if list_4.find("Tube") == 0:
@@ -154,6 +165,8 @@ while True:
                 publish.single("capture", timestamp, hostname=hostname, port=port, auth=auth)
                 publish.single("Tube", "OK", hostname=hostname, port=port, auth=auth)
                 publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+                publish.single("object", list_4, hostname=hostname, port=port, auth=auth)
+                publish.single("filename", list_5, hostname=hostname, port=port, auth=auth)
                 print(timestamp)
 
         if list_4.find("Filter") == 0:
@@ -163,6 +176,8 @@ while True:
                 publish.single("capture", timestamp, hostname=hostname, port=port, auth=auth)
                 publish.single("Filter", "OK", hostname=hostname, port=port, auth=auth)
                 publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+                publish.single("object", list_4, hostname=hostname, port=port, auth=auth)
+                publish.single("filename", list_5, hostname=hostname, port=port, auth=auth)
                 print(timestamp)
 
         if list_4.find("Label") == 0:
@@ -172,6 +187,8 @@ while True:
                 publish.single("capture", timestamp, hostname=hostname, port=port, auth=auth)
                 publish.single("Label", "OK", hostname=hostname, port=port, auth=auth)
                 publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+                publish.single("object", list_4, hostname=hostname, port=port, auth=auth)
+                publish.single("filename", list_5, hostname=hostname, port=port, auth=auth)
                 print(timestamp)
 
         if list_4.find("Unit") == 0:
@@ -181,6 +198,8 @@ while True:
                 publish.single("capture", timestamp, hostname=hostname, port=port, auth=auth)
                 publish.single("Unit", "OK", hostname=hostname, port=port, auth=auth)
                 publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+                publish.single("object", list_4, hostname=hostname, port=port, auth=auth)
+                publish.single("filename", list_5, hostname=hostname, port=port, auth=auth)
                 print(timestamp)
 
 
@@ -191,6 +210,8 @@ while True:
                 publish.single("capture", timestamp, hostname=hostname, port=port, auth=auth)
                 publish.single("Bag1", "OK", hostname=hostname, port=port, auth=auth)
                 publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+                publish.single("object", list_4, hostname=hostname, port=port, auth=auth)
+                publish.single("filename", list_5, hostname=hostname, port=port, auth=auth)
                 print(timestamp)
 
         if list_4.find("Bag2") == 0:
@@ -200,6 +221,8 @@ while True:
                 publish.single("capture", timestamp, hostname=hostname, port=port, auth=auth)
                 publish.single("Bag2", "OK", hostname=hostname, port=port, auth=auth)
                 publish.single("time", timestamp, hostname=hostname, port=port, auth=auth)
+                publish.single("object", list_4, hostname=hostname, port=port, auth=auth)
+                publish.single("filename", list_5, hostname=hostname, port=port, auth=auth)
                 print(timestamp)
 
         if Unit == 1:
