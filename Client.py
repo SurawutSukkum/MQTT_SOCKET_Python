@@ -24,33 +24,7 @@ auth = {
 }
 print("waiting for connection")
 
-'''assembly_path = r'D:\pythonProject4\KETL_DLL.dll'
-sys.path.append(assembly_path)
-clr.AddReference("KETL_DLL")
-from KETL_DLL import Main_Function
-bc = Main_Function()
-ser_num = "MDH00000001"
-station_name = "MAN_HSG01"
-Station_Desc = "MANUAL INSTALL COVER LABEL"
-ent_time = "2020-08-11 10:10:18"
-ext_time = "2020-08-11 10:11:18"
-print(bc.Backcheck_Data(ser_num,station_name ))
-rt_insert = bc.Insert_Process_Data(ser_num, station_name, Station_Desc, ent_time, ext_time, 1)
-if rt_insert == True:
-    print("insert complete!!")
-else:
-    print("insert does not complete!!")'''
 
-'''from ctypes import*
-
-libc = cdll.WinDLL("D:\pythonProject4\KETL_DLL.dll")
-#libc = ctypes.WinDLL('D:/Test Object-Classification - GUI/KETL_DLL.dll')
-print(libc)
-ser_num = 'MDH00000001'
-station_name = 'MAN_HSG01'
-#Station_Desc = "MANUAL INSTALL COVER LABEL"
-result1= libc.Backcheck_Data(ser_num, station_name)
-print(result1)'''
 
 
 
