@@ -13,13 +13,13 @@ from pathlib import Path
 ''''''
 
 HOST_socket = 'xx.xx.xx.xx'
-PORT_socket = xx
+PORT_socket = 5432
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind((HOST_socket, PORT_socket))
 s.listen()
 
 hostname = "xx.xx.xx.xx"
-port = xx
+port = 1883
 auth = {
     'username': ' ',
     'password': ' '
@@ -120,7 +120,12 @@ while True:
         #print(type(pythonObj))
         list_4 = pythonObj['DeepDetect']['obj_count_str']
 
-
+        if Flag_Unit_cnt > 0:
+            print("timeout unit ",Unit_timeout)
+            Unit_timeout = Unit_timeout+1
+            if Unit_timeout > 100:
+                Unit_timeout = 0
+                Flag_Unit_cnt = 0
 
         #check time out
         if Power_supply == 1:
@@ -233,7 +238,7 @@ while True:
 
         if list_4.find("Unit") >= 0:
             print("Unit",Flag_Unit_cnt)
-            if Flag_Unit_cnt <= 0:
+            if Flag_Unit_cnt <= 1:
                 Flag_Unit_cnt = Flag_Unit_cnt + 1
             elif Flag_Unit == 0 :
                 Flag_Unit_cnt=0
