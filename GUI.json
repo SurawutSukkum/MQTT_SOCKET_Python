@@ -16,7 +16,7 @@
         "order": 1,
         "width": "12",
         "height": "12",
-        "format": "<img src= \"http://10.144.14.33:8000/\">\n",
+        "format": "<img src= \"http:///\">\n",
         "storeOutMessages": true,
         "fwdInMessages": true,
         "resendOnRefresh": true,
